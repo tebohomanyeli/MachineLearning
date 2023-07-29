@@ -1,0 +1,55 @@
+/* Style for the body of the document */
+body {
+    /* Set the font family */
+    font-family: Impact;
+    /* Set the background color */
+    background-color: skyblue;
+    /* Control the behavior when the scroll position of a scroll container is at the edge of the scrollport */
+    overscroll-behavior: none;
+}
+
+/* Style for the main content container */
+#mainContent {
+    /* Position the element */
+    position: absolute;
+    /* Position the element in the center of the container */
+    top: 50%;
+    left: 50%;
+    /* Adjust the position of the element */
+    transform: translate(-50%, -50%);
+    /* Align the text to the center */
+    text-align: center;
+}
+
+/* Style for the buttons */
+button {
+    /* Change the cursor to a pointer */
+    cursor: pointer;
+    /* Remove the border */
+    border: none;
+    /* Add padding to the button */
+    padding: 2px 10px 2px 10px;
+    /* Set the height of the button */
+    height: 22px;
+    /* Round the corners of the button */
+    border-radius: 5px;
+    /* Set the background color of the button */
+    background-color: navy;
+    /* Set the color of the text inside the button */
+    color: white;
+}
+
+/* Style for the button when the mouse pointer is over it */
+button:hover {
+    /* Change the background color of the button */
+    background-color: blue;
+}
+
+/* Style for the button when it is disabled */
+button:disabled,
+button:disabled:hover {
+    /* Change the background color of the button */
+    background-color: gray;
+    /* Change the cursor to the default */
+    cursor: default;
+}

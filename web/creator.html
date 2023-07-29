@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Ensure proper rendering and touch zooming -->
+    <meta name="viewport" content="width=device-width, maximum-scale=0.9, user-scalable=0">
+    
+    <!-- Title of the document -->
+    <title>Data Creator</title>
+    
+    <!-- Link to the external CSS stylesheet -->
+    <link rel="stylesheet" href="styles.css"/>
+</head>
+
+<body>
+    <!-- Main content container -->
+    <div id="mainContent">
+        <!-- Title header -->
+        <h1>Data Creator</h1>
+        <br>
+        <!-- Container for the sketch pad -->
+        <div id="sketchPadContainer"></div>
+    </div>
+
+    <!-- Import JavaScript files -->
+    <script src="js/draw.js"></script>
+    <script src="js/sketchPad.js"></script>
+
+    <script>
+    // Instantiate a SketchPad object and append it to the sketchPadContainer
+    const mySketchPad = new SketchPad(sketchPadContainer);
+    </script>
+</body>
+</html>
