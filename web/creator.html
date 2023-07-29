@@ -3,7 +3,8 @@
 <head>
     <!-- Ensure proper rendering and touch zooming -->
     <meta name="viewport" content="width=device-width, maximum-scale=0.9, user-scalable=0">
-    
+    <!-- Support a wider range of character include special ones -->
+    <meta charset="UTF-8">
     <!-- Title of the document -->
     <title>Data Creator</title>
     
@@ -16,9 +17,20 @@
     <div id="mainContent">
         <!-- Title header -->
         <h1>Data Creator</h1>
+
+        <!-- Register User Details and Start Button -->
+        <div>
+            <input id="student" type="text" placeholder="type your name"/>
+            <span id="instructions"></span>
+            <button id="advanceButton" onclick="start();">
+                START
+            </button>
+        </div>
+
         <br>
+
         <!-- Container for the sketch pad -->
-        <div id="sketchPadContainer"></div>
+        <div id="sketchPadContainer"  style="visibility:hidden;"></div>
     </div>
 
     <!-- Import JavaScript files -->
@@ -26,8 +38,74 @@
     <script src="js/sketchPad.js"></script>
 
     <script>
-    // Instantiate a SketchPad object and append it to the sketchPadContainer
-    const mySketchPad = new SketchPad(sketchPadContainer);
+        let index = 0;
+
+        const labels=["car","fish","house","tree",
+        "bicycle","guitar","pencil","clock"];
+
+        const data={
+            student:null,
+            session:new Date().getTime(),
+            drawings:{}
+        }
+
+        // Instantiate a SketchPad object and append it to the sketchPadContainer
+        const mySketchPad = new SketchPad(sketchPadContainer);
+
+        function start(){
+            if(student.value == ""){
+                alert("Please type your name first!");
+                return;
+            }
+
+            data.student=student.value;
+            student.style.display="none";
+            sketchPadContainer.style.visibility="visible";
+
+            const label = labels[index];
+            instructions.innerHTML=`Draw ${label} using mouse or touch`;
+            advanceButton.innerHTML="NEXT"
+            advanceButton.onclick=next;
+        }
+
+
+        function next(){
+            if (mySketchPad.pathsList.length==0){
+                alert("Draw something first!");
+                return;
+            }
+
+            const label=labels[index];
+            data.drawings[label]=mySketchPad.pathsList;
+            mySketchPad.reset();
+            index++;
+            if(index<labels.length){
+                const nextLbel=labels[index];
+                instructions.innerHTML=`Draw ${nextLbel} using mouse or touch`;
+            }else{
+                sketchPadContainer.style.visibility="hidden";
+                instructions.innerHTML="Thank you!"
+                advanceButton.innerHTML="SAVE"
+                advanceButton.onclick=save;
+            }
+        }
+
+
+        function save(){
+            advanceButton.style.display="none"
+            instructions.innerHTML="Take your downloaded file and place it alongside the others in the dataset!";
+
+            const element = document.createElement('a');
+            element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(JSON.stringify(data)));
+
+            const fileName=data.session+".json";
+            element.setAttribute('download', fileName);
+
+            element.style.display='none';
+            document.body.appendChild(element);
+            element.click();
+            document.body.removeChild(element);
+        }
     </script>
 </body>
 </html>

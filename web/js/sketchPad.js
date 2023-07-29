@@ -62,7 +62,7 @@ class SketchPad {
                 this._redraw();
             }
         };
-        this.canvasElement.onmouseup = () => {
+        document.onmouseup = () => {
             this.isDrawing = false;
         };
 
@@ -76,8 +76,8 @@ class SketchPad {
             const touchLocation = event.touches[0];
             this.canvasElement.onmousemove(touchLocation);
         };
-        this.canvasElement.ontouchend = () => {
-            this.canvasElement.onmouseup();
+        document.ontouchend = () => {
+            document.onmouseup();
         };
 
 
@@ -114,5 +114,16 @@ class SketchPad {
 
         // Enable or disable the undo button
         this.undoButtonElement.disabled = this.pathsList.length === 0;
+    }
+
+
+    reset(){
+        // Initialize drawing variables
+        this.pathsList = [];
+        this.isDrawing = false;
+
+        // Redraw the canvas
+        this._redraw();
+
     }
 }
