@@ -29,7 +29,7 @@ drawingFunctions.path = (context, path, color = "black") => {
 
     // Render the path
     context.stroke();
-};
+}
 
 
 /**
@@ -43,4 +43,8 @@ drawingFunctions.paths = (context, paths, color = "black") => {
     for (const path of paths) {
         drawingFunctions.path(context, path, color);
     }
-};
+}
+
+if(typeof module!== 'undefined'){
+    module.exports=drawingFunctions;
+}
