@@ -43,6 +43,9 @@ fileNames.forEach(fn => {
 filesystem.writeFileSync(constants.SAMPLES, JSON.stringify(samples));
 
 
+filesystem.writeFileSync(constants.SAMPLES_JS, "const samples="+JSON.stringify(samples)+";");
+
+
 function generateImageFile(outFile, drawingPaths){
     ctx.clearRect(0,0,canvas.width,canvas.height) // clear the canvas everytime it runs
     draw.paths(ctx, drawingPaths);

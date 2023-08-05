@@ -1,2 +1,4 @@
 node/node_modules
 node/*.json
+data/dataset/image/*.png
+data/dataset/json/*.json

@@ -1,1 +1,51 @@
-they're already here and what this group is doing is regenerating them over and over again every time we run it I just did this to teach you about the file structure and the progress indicator okay and stop now we're gonna start building a web application that can display this data set but before that we need to store it in the way that the browser can read it as well I'm gonna go here in common and create a folder called julius_objects this folder is going to contain files we used to communicate between our notes scripts and the web apps were gonna make I'm gonna go to Constance j yes and add here a path to this JS objects directory like this and here working to create the samples JavaScript file similar to the samples Jason but it will initialise a JavaScript object then if that's what you're saying inside the chase objects and it will be called sample stopped JS this time we write this file in dataset generator at the bottom by copying this outing hear samples_js and instead of just string if I'm here I'm going to pad constables is equal to and I will concatenate with the string and out here Assembly Hall momotea now let's rerun the script we can see the file now here it's essentially the same as some pills but with this beginning part right here and the silly kilometre now this kind of structure I'm using here is not really standard and I won't go into much detail as to why I chose it for this course but ensured its to avoid course I thought the web servers too much trouble and the fierce code live server extension is buggy with some of the things will do later at least on my computer but feel free to reorganize this if you have better ideas we are going
+# Step 1: Creating a Web-Readable Version of the Data
+
+To start building a web application that can display the dataset, it needs to be stored in a format that the browser can read. This can be achieved by creating a JavaScript object of the data. 
+
+First, a new directory called `/common/js_objects` is created. This directory will hold the files used for communication between Node.js scripts and the web applications. 
+
+In the [`constants.js`](../common/constants.js) file, a path is defined to the `JS_OBJECTS` directory:
+
+```js
+// constants.js
+// ... rest of code ...
+
+// Adding a new constant for the JS_OBJECTS directory
+constants.JS_OBJECTS        = "./common/js_objects";
+
+// A new constant for the SAMPLES_JS file
+constants.SAMPLES_JS        = constants.JS_OBJECTS + "/samples.js";
+
+// ... rest of code ...
+```
+
+After adding these constants, the `dataset_generator.js` script is modified to write a new file, `samples.js`, which will initialize a JavaScript object with the JSON data:
+
+```js
+// dataset_generator.js
+// ... rest of code ...
+
+// This line creates the samples.json file
+filesystem.writeFileSync(constants.SAMPLES, JSON.stringify(samples));
+
+// The new line added: this creates the samples.js file
+filesystem.writeFileSync(constants.SAMPLES_JS, "const samples=" + JSON.stringify(samples) + ";");
+
+// ... rest of code ...
+```
+
+Upon re-running the [`dataset_generator.js`](../node/dataset_generator.js) script, a new file, [`samples.js`](../common/js_objects/samples.js), is created in the `/common/js_objects` directory. The `samples.js` file is similar to the [`samples.json`](../data/datasetsamples.json) file, but it initializes a JavaScript object named `samples`:
+
+```js
+// samples.js
+const samples = [
+    {"id":1,"label":"car","student_name":"Radu","student_id":1663053145814},
+    // ... rest of data ...
+];
+```
+
+Note that this structure is not standard; it's used here to avoid issues related to CORS and to circumvent certain bugs with the VS Code Live Server extension. Feel free to reorganize this if you have a better idea or if it fits your project needs better.
+
+---
+
+# Step 2: Continue

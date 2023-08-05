@@ -10,7 +10,8 @@ constants.JSON_DIR          = constants.DATASET_DIR + "/json";
 constants.IMG_DIR           = constants.DATASET_DIR + "/image";
 constants.SAMPLES           = constants.DATASET_DIR + "samples.json"; // this file will store the summery of the samples
 
-
+constants.JS_OBJECTS        = "../common/js_objects";
+constants.SAMPLES_JS        = constants.JS_OBJECTS+"/samples.js"
 
 if(typeof module !== 'undefined'){
     module.exports = constants;
